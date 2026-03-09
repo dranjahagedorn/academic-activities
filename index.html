@@ -19,7 +19,6 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -52,8 +51,16 @@
     letter-spacing: 0.1em; text-transform: uppercase;
     color: var(--muted); text-decoration: none;
     transition: color 0.2s;
+    position: relative; padding-bottom: 0.2rem;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+    height: 1px; background: var(--rust);
+    transform: scaleX(0); transition: transform 0.25s ease;
   }
   .nav-links a:hover { color: var(--rust); }
+  .nav-links a.active { color: var(--rust); }
+  .nav-links a.active::after { transform: scaleX(1); }
 
   /* ── HERO ── */
   .hero {
@@ -99,18 +106,25 @@
     text-decoration: none; border: 1px solid;
     transition: all 0.25s; cursor: pointer;
   }
-  .btn-primary {
-    background: var(--ink); color: var(--paper); border-color: var(--ink);
-  }
+  .btn-primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
   .btn-primary:hover { background: var(--rust); border-color: var(--rust); }
   .btn-outline { background: transparent; color: var(--ink); border-color: var(--light-line); }
   .btn-outline:hover { border-color: var(--ink); }
 
+  .hero-right { display: flex; flex-direction: column; gap: 1.5rem; align-self: center; }
+  .hero-photo { width: 100%; aspect-ratio: 4/5; overflow: hidden; position: relative; }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .photo-placeholder {
+    display: flex; width: 100%; height: 100%; min-height: 280px;
+    background: var(--cream); border: 1px dashed var(--light-line);
+    align-items: center; justify-content: center;
+    font-family: 'DM Mono', monospace; font-size: 0.7rem;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+  }
   .hero-stats {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
-    padding: 3rem; background: var(--cream);
-    border: 1px solid var(--light-line); align-self: center;
-    position: relative;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    padding: 1.5rem; background: var(--cream);
+    border: 1px solid var(--light-line); position: relative;
   }
   .hero-stats::before {
     content: ''; position: absolute; top: -1px; left: 2rem; width: 3rem; height: 2px;
@@ -130,14 +144,8 @@
   section { padding: 6rem 4rem; }
   section:nth-child(even) { background: var(--cream); }
 
-  .section-header {
-    display: flex; align-items: baseline; gap: 1.5rem;
-    margin-bottom: 3.5rem;
-  }
-  .section-num {
-    font-family: 'DM Mono', monospace; font-size: 0.7rem;
-    color: var(--rust); letter-spacing: 0.1em;
-  }
+  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3.5rem; }
+  .section-num { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--rust); letter-spacing: 0.1em; }
   h2 {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 300;
@@ -149,7 +157,6 @@
   .about-body { font-size: 1.05rem; line-height: 1.85; color: var(--muted); }
   .about-body p + p { margin-top: 1.2rem; }
   .about-body strong { color: var(--ink); font-weight: 500; }
-
   .languages { margin-top: 2.5rem; }
   .lang-label {
     font-family: 'DM Mono', monospace; font-size: 0.65rem;
@@ -157,20 +164,14 @@
     color: var(--sage); margin-bottom: 1rem;
   }
   .lang-items { display: flex; flex-wrap: wrap; gap: 0.6rem; }
-  .lang-tag {
-    padding: 0.3rem 0.9rem; border: 1px solid var(--light-line);
-    font-size: 0.8rem; color: var(--muted);
-  }
+  .lang-tag { padding: 0.3rem 0.9rem; border: 1px solid var(--light-line); font-size: 0.8rem; color: var(--muted); }
 
   .timeline { display: flex; flex-direction: column; gap: 1.2rem; }
   .tl-item {
-    display: grid; grid-template-columns: 4rem 1fr; gap: 1rem;
+    display: grid; grid-template-columns: 4.5rem 1fr; gap: 1rem;
     padding-bottom: 1.2rem; border-bottom: 1px solid var(--light-line);
   }
-  .tl-year {
-    font-family: 'DM Mono', monospace; font-size: 0.7rem;
-    color: var(--rust); padding-top: 0.15rem; letter-spacing: 0.05em;
-  }
+  .tl-year { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--rust); padding-top: 0.15rem; letter-spacing: 0.05em; }
   .tl-text { font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
   .tl-text strong { color: var(--ink); font-weight: 500; display: block; margin-bottom: 0.1rem; }
 
@@ -194,53 +195,36 @@
   .active .card-status { color: var(--sage); }
   .review .card-status { color: var(--gold); }
   .planned .card-status { color: var(--muted); }
-  .research-card h3 {
-    font-family: 'Cormorant Garamond', serif; font-size: 1.25rem;
-    font-weight: 400; margin-bottom: 0.8rem; line-height: 1.3;
-  }
+  .research-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; margin-bottom: 0.8rem; line-height: 1.3; }
   .research-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
   .card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.2rem; }
-  .tag {
-    font-size: 0.65rem; font-family: 'DM Mono', monospace;
-    padding: 0.2rem 0.6rem; background: var(--cream);
-    color: var(--muted); letter-spacing: 0.05em;
+  .tag { font-size: 0.65rem; font-family: 'DM Mono', monospace; padding: 0.2rem 0.6rem; background: var(--cream); color: var(--muted); letter-spacing: 0.05em; }
+  .project-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    margin-top: 1rem; font-family: 'DM Mono', monospace; font-size: 0.68rem;
+    letter-spacing: 0.08em; color: var(--rust); text-decoration: none;
   }
+  .project-link:hover { text-decoration: underline; }
 
   /* ── TEACHING ── */
   .teaching-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; }
-  .course-list { display: flex; flex-direction: column; gap: 0; }
+  .course-list { display: flex; flex-direction: column; }
   .course-item {
     display: grid; grid-template-columns: 5rem 1fr; gap: 1rem;
     padding: 1rem 0; border-bottom: 1px solid var(--light-line);
   }
-  .course-year {
-    font-family: 'DM Mono', monospace; font-size: 0.68rem;
-    color: var(--muted); padding-top: 0.2rem;
-  }
+  .course-year { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); padding-top: 0.2rem; }
   .course-name { font-size: 0.9rem; color: var(--ink); line-height: 1.4; }
   .course-inst { font-size: 0.78rem; color: var(--muted); margin-top: 0.2rem; }
-
   .teaching-side { display: flex; flex-direction: column; gap: 2rem; }
-  .teaching-highlight {
-    padding: 2rem; border-left: 3px solid var(--rust);
-    background: rgba(181,84,28,0.04);
-  }
-  .teaching-highlight h4 {
-    font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-  }
+  .teaching-highlight { padding: 2rem; border-left: 3px solid var(--rust); background: rgba(181,84,28,0.04); }
+  .teaching-highlight h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; margin-bottom: 0.5rem; }
   .teaching-highlight p { font-size: 0.88rem; color: var(--muted); }
 
   /* ── PUBLICATIONS ── */
   .pub-list { display: flex; flex-direction: column; gap: 1.5rem; max-width: 72ch; }
-  .pub-item {
-    padding: 1.5rem 0; border-bottom: 1px solid var(--light-line);
-  }
-  .pub-type {
-    font-family: 'DM Mono', monospace; font-size: 0.62rem;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--sage); margin-bottom: 0.5rem;
-  }
+  .pub-item { padding: 1.5rem 0; border-bottom: 1px solid var(--light-line); }
+  .pub-type { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.5rem; }
   .pub-title { font-size: 1rem; color: var(--ink); line-height: 1.45; margin-bottom: 0.4rem; }
   .pub-meta { font-size: 0.82rem; color: var(--muted); font-style: italic; }
   .pub-badge {
@@ -250,76 +234,40 @@
     border: 1px solid var(--gold); color: var(--gold);
   }
 
-  /* ── PROJECTS (applied) ── */
-  .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-  .project-card {
-    padding: 2rem; border: 1px solid var(--light-line);
-    position: relative; overflow: hidden;
-    transition: transform 0.2s;
-  }
-  .project-card::after {
-    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-    height: 3px;
-  }
-  .project-card.ai::after { background: var(--sage); }
-  .project-card.foresight::after { background: var(--gold); }
-  .project-card.coaching::after { background: var(--rust); }
-  .project-card.research::after { background: var(--ink); }
-  .project-card:hover { transform: translateY(-2px); }
-  .project-type {
-    font-family: 'DM Mono', monospace; font-size: 0.62rem;
-    letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
-    margin-bottom: 0.8rem;
-  }
-  .project-card h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.3rem; font-weight: 400; margin-bottom: 0.8rem; line-height: 1.3;
-  }
-  .project-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
-  .project-link {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    margin-top: 1rem; font-family: 'DM Mono', monospace; font-size: 0.68rem;
-    letter-spacing: 0.08em; color: var(--rust); text-decoration: none;
-  }
-  .project-link:hover { text-decoration: underline; }
-
   /* ── CONTACT ── */
   .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-  .contact-intro {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.6rem; font-weight: 300; line-height: 1.5;
-    color: var(--ink); margin-bottom: 1.5rem;
-  }
+  .contact-intro { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; line-height: 1.5; color: var(--ink); margin-bottom: 1.5rem; }
   .contact-intro em { font-style: italic; color: var(--rust); }
   .contact-text { font-size: 0.92rem; color: var(--muted); margin-bottom: 2rem; }
   .contact-fields { display: flex; flex-direction: column; gap: 1rem; }
   .contact-field { display: flex; gap: 1rem; align-items: flex-start; }
-  .field-label {
-    font-family: 'DM Mono', monospace; font-size: 0.65rem;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--muted); min-width: 5rem; padding-top: 0.1rem;
-  }
+  .field-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); min-width: 5rem; padding-top: 0.1rem; }
   .field-value { font-size: 0.9rem; color: var(--ink); }
   .field-value a { color: var(--rust); text-decoration: none; }
   .field-value a:hover { text-decoration: underline; }
 
+  /* ── IMPRESSUM ── */
+  #impressum { padding: 4rem; background: var(--ink); color: var(--muted); }
+  #impressum h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; color: var(--paper); margin-bottom: 1.5rem; }
+  .impressum-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .impressum-block { font-size: 0.85rem; line-height: 1.8; }
+  .impressum-label { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rust); margin-bottom: 0.5rem; }
+  .impressum-block a { color: var(--muted); text-decoration: none; }
+  .impressum-block a:hover { color: var(--paper); }
+
   /* ── FOOTER ── */
   footer {
-    padding: 2rem 4rem;
-    border-top: 1px solid var(--light-line);
+    padding: 1.5rem 4rem;
+    background: var(--ink);
+    border-top: 1px solid rgba(255,255,255,0.07);
     display: flex; justify-content: space-between; align-items: center;
-    font-family: 'DM Mono', monospace; font-size: 0.65rem;
-    letter-spacing: 0.08em; color: var(--muted);
+    font-family: 'DM Mono', monospace; font-size: 0.62rem;
+    letter-spacing: 0.08em; color: rgba(255,255,255,0.25);
   }
 
   /* ── ANIMATIONS ── */
-  .fade-in {
-    opacity: 0; transform: translateY(20px);
-    animation: fadeUp 0.7s ease forwards;
-  }
-  @keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
-  }
+  .fade-in { opacity: 0; transform: translateY(20px); animation: fadeUp 0.7s ease forwards; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
   .fade-in:nth-child(1) { animation-delay: 0.1s; }
   .fade-in:nth-child(2) { animation-delay: 0.25s; }
   .fade-in:nth-child(3) { animation-delay: 0.4s; }
@@ -330,12 +278,12 @@
     nav { padding: 1.2rem 1.5rem; }
     .nav-links { display: none; }
     .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; }
-    .hero-stats { grid-template-columns: 1fr 1fr; }
     section { padding: 4rem 1.5rem; }
     .about-grid, .teaching-layout, .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; }
     .research-grid { grid-template-columns: 1fr; }
-    .projects-grid { grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    .impressum-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    #impressum { padding: 3rem 1.5rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
   }
 </style>
 </head>
@@ -364,22 +312,28 @@
       <a href="#contact" class="btn btn-outline">Get in Touch</a>
     </div>
   </div>
-  <div class="hero-stats fade-in">
-    <div>
-      <div class="stat-num">15+</div>
-      <div class="stat-label">Years Teaching</div>
+  <div class="hero-right fade-in">
+    <div class="hero-photo">
+      <img src="foto.jpg" alt="Dr. Anja Hagedorn" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div class="photo-placeholder">Foto folgt</div>
     </div>
-    <div>
-      <div class="stat-num">7</div>
-      <div class="stat-label">Countries</div>
-    </div>
-    <div>
-      <div class="stat-num">3</div>
-      <div class="stat-label">Teaching Languages</div>
-    </div>
-    <div>
-      <div class="stat-num">EN·DE</div>
-      <div class="stat-label">Teaching Languages</div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">15+</div>
+        <div class="stat-label">Years Teaching</div>
+      </div>
+      <div>
+        <div class="stat-num">7</div>
+        <div class="stat-label">Countries</div>
+      </div>
+      <div>
+        <div class="stat-num">EN·DE</div>
+        <div class="stat-label">Languages</div>
+      </div>
+      <div>
+        <div class="stat-num">Dr.</div>
+        <div class="stat-label">HHL Leipzig</div>
+      </div>
     </div>
   </div>
 </section>
@@ -407,13 +361,12 @@
         <div class="lang-items">
           <span class="lang-tag">Entrepreneurship</span>
           <span class="lang-tag">Innovation Management</span>
-          <span class="lang-tag">Technology & Forsight</span>
+          <span class="lang-tag">Technology & Foresight</span>
           <span class="lang-tag">Design Thinking</span>
           <span class="lang-tag">Agile Management</span>
           <span class="lang-tag">Online Marketing</span>
           <span class="lang-tag">E-Commerce</span>
           <span class="lang-tag">Project Management</span>
-          
         </div>
       </div>
       <div style="margin-top:2rem; padding:1.5rem; border-left: 3px solid var(--rust); background: rgba(181,84,28,0.04);">
@@ -425,34 +378,36 @@
     <div>
       <div style="font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:1.2rem;">Qualifications</div>
       <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-year">2025–26</div>
-        <div class="tl-text"><strong>MIT Applied AI & Data Science</strong>Professional Certificate · MIT Professional Education</div>
+        <div class="tl-item">
+          <div class="tl-year">2025–26</div>
+          <div class="tl-text"><strong>MIT Applied AI & Data Science</strong>Professional Certificate · MIT Professional Education</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2023–24</div>
+          <div class="tl-text"><strong>Patent- & Innovationsschutz Manager</strong>Universität Koblenz / Universität des Saarlandes · Note 1,0</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2023</div>
+          <div class="tl-text"><strong>EXIN Agile Scrum Master & Product Owner</strong>Certification</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2017</div>
+          <div class="tl-text"><strong>Dr. rer. oec. — magna cum laude</strong>HHL Leipzig Graduate School of Management</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2013–16</div>
+          <div class="tl-text"><strong>TZI Grundausbildung</strong>RCI International</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2012–13</div>
+          <div class="tl-text"><strong>Systemische Beratung — Basis-Zertifikat</strong>isb GmbH</div>
+        </div>
       </div>
-      <div class="tl-item">
-        <div class="tl-year">2023–24</div>
-        <div class="tl-text"><strong>Patent- & Innovationsschutz Manager</strong>Universität Koblenz / Universität des Saarlandes · Note 1,0</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-year">2023</div>
-        <div class="tl-text"><strong>EXIN Agile Scrum Master & Product Owner</strong>Certification</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-year">2017</div>
-        <div class="tl-text"><strong>Dr. rer. oec. — magna cum laude</strong>HHL Leipzig Graduate School of Management</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-year">2013–16</div>
-        <div class="tl-text"><strong>TZI Grundausbildung</strong>RCI International</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-year">2012–13</div>
-        <div class="tl-text"><strong>Systemische Beratung — Basis-Zertifikat</strong>isb GmbH</div>
-      </div>
-    </div>
     </div>
   </div>
 </section>
+
+<!-- RESEARCH & PROJECTS -->
 <section id="research">
   <div class="section-header">
     <span class="section-num">02 —</span>
@@ -641,12 +596,16 @@
     <div>
       <p class="contact-intro">Open to <em>research collaborations</em>, teaching engagements, and advisory work.</p>
       <p class="contact-text">Whether you're looking for an experienced educator with international reach, a researcher with hands-on AI tooling experience, or a facilitator with deep roots in entrepreneurship — I'd be glad to connect.</p>
-      <a href="mailto:anja.hagedorn@example.com" class="btn btn-primary">Send a Message</a>
+      <a href="#" class="btn btn-primary" id="contact-btn">Send a Message</a>
     </div>
     <div class="contact-fields">
       <div class="contact-field">
         <div class="field-label">Location</div>
         <div class="field-value">Leipzig, Germany</div>
+      </div>
+      <div class="contact-field">
+        <div class="field-label">Email</div>
+        <div class="field-value"><span id="email-display"></span></div>
       </div>
       <div class="contact-field">
         <div class="field-label">Research</div>
@@ -664,7 +623,62 @@
   </div>
 </section>
 
+<!-- IMPRESSUM -->
+<section id="impressum">
+  <h2>Impressum</h2>
+  <div class="impressum-grid">
+    <div class="impressum-block">
+      <div class="impressum-label">Angaben gemäß § 5 TMG</div>
+      Dr. Anja Hagedorn<br>
+      Bautzmannstr. 19<br>
+      04315 Leipzig<br>
+      Deutschland
+    </div>
+    <div class="impressum-block">
+      <div class="impressum-label">Kontakt</div>
+      E-Mail: <span id="impressum-email"></span><br><br>
+      <div class="impressum-label" style="margin-top:1rem;">Haftungshinweis</div>
+      Diese Website dient ausschließlich der persönlichen akademischen Darstellung. Trotz sorgfältiger inhaltlicher Kontrolle übernehme ich keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
-  <span>© 2026 Dr. Anja Hagedorn</span>
-  <span>Leipzig · Gen
+  <span>© 2026 Dr. Anja Hagedorn · Leipzig</span>
+  <span><a href="#impressum" style="color:inherit; text-decoration:none;">Impressum</a></span>
+</footer>
+
+<script>
+  // Email obfuscation
+  const u = 'anja_hagedorn';
+  const d = 'outlook.com';
+  const email = u + '@' + d;
+  const link = '<a href="mailto:' + email + '" style="color:var(--rust);text-decoration:none;">' + email + '</a>';
+  document.getElementById('email-display').innerHTML = link;
+  document.getElementById('impressum-email').innerHTML = link;
+  document.getElementById('contact-btn').href = 'mailto:' + email;
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + id) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+
+  sections.forEach(section => observer.observe(section));
+</script>
+
+</body>
+</html>
