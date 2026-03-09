@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Anja Hagedorn – Researcher · Educator · Advisor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a18;
+    --paper: #f5f2ec;
+    --cream: #ede9e0;
+    --sage: #7a8c72;
+    --rust: #b5541c;
+    --gold: #c9a84c;
+    --muted: #7a7870;
+    --light-line: #ddd9cf;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.4rem 4rem;
+    background: rgba(245,242,236,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--light-line);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-weight: 400; letter-spacing: 0.04em;
+    color: var(--ink); text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-family: 'DM Mono', monospace; font-size: 0.72rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--rust); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr; align-items: center;
+    padding: 8rem 4rem 4rem;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -10%; right: -5%;
+    width: 55vw; height: 110vh;
+    background: radial-gradient(ellipse at 70% 30%, rgba(122,140,114,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 30% 80%, rgba(201,168,76,0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .hero-text { position: relative; z-index: 1; }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace; font-size: 0.72rem;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--sage);
+    margin-bottom: 1.2rem; display: flex; align-items: center; gap: 1rem;
+  }
+  .hero-eyebrow::after { content: ''; display: block; width: 3rem; height: 1px; background: var(--sage); }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 5vw, 5.5rem);
+    font-weight: 300; line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.8rem;
+  }
+  h1 em { font-style: italic; color: var(--rust); }
+  .hero-desc {
+    font-size: 1.05rem; color: var(--muted); max-width: 42ch;
+    margin-bottom: 2.5rem; line-height: 1.8;
+  }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 0.75rem 1.8rem;
+    font-family: 'DM Mono', monospace; font-size: 0.72rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; border: 1px solid;
+    transition: all 0.25s; cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--ink); color: var(--paper); border-color: var(--ink);
+  }
+  .btn-primary:hover { background: var(--rust); border-color: var(--rust); }
+  .btn-outline { background: transparent; color: var(--ink); border-color: var(--light-line); }
+  .btn-outline:hover { border-color: var(--ink); }
+
+  .hero-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+    padding: 3rem; background: var(--cream);
+    border: 1px solid var(--light-line); align-self: center;
+    position: relative;
+  }
+  .hero-stats::before {
+    content: ''; position: absolute; top: -1px; left: 2rem; width: 3rem; height: 2px;
+    background: var(--rust);
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem; font-weight: 300; line-height: 1;
+    color: var(--ink); margin-bottom: 0.3rem;
+  }
+  .stat-label {
+    font-family: 'DM Mono', monospace; font-size: 0.65rem;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 4rem; }
+  section:nth-child(even) { background: var(--cream); }
+
+  .section-header {
+    display: flex; align-items: baseline; gap: 1.5rem;
+    margin-bottom: 3.5rem;
+  }
+  .section-num {
+    font-family: 'DM Mono', monospace; font-size: 0.7rem;
+    color: var(--rust); letter-spacing: 0.1em;
+  }
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 300;
+    letter-spacing: -0.01em;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 5rem; align-items: start; }
+  .about-body { font-size: 1.05rem; line-height: 1.85; color: var(--muted); }
+  .about-body p + p { margin-top: 1.2rem; }
+  .about-body strong { color: var(--ink); font-weight: 500; }
+
+  .languages { margin-top: 2.5rem; }
+  .lang-label {
+    font-family: 'DM Mono', monospace; font-size: 0.65rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--sage); margin-bottom: 1rem;
+  }
+  .lang-items { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .lang-tag {
+    padding: 0.3rem 0.9rem; border: 1px solid var(--light-line);
+    font-size: 0.8rem; color: var(--muted);
+  }
+
+  .timeline { display: flex; flex-direction: column; gap: 1.2rem; }
+  .tl-item {
+    display: grid; grid-template-columns: 4rem 1fr; gap: 1rem;
+    padding-bottom: 1.2rem; border-bottom: 1px solid var(--light-line);
+  }
+  .tl-year {
+    font-family: 'DM Mono', monospace; font-size: 0.7rem;
+    color: var(--rust); padding-top: 0.15rem; letter-spacing: 0.05em;
+  }
+  .tl-text { font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
+  .tl-text strong { color: var(--ink); font-weight: 500; display: block; margin-bottom: 0.1rem; }
+
+  /* ── RESEARCH ── */
+  .research-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .research-card {
+    padding: 2rem; border: 1px solid var(--light-line);
+    background: var(--paper); position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .research-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.07); }
+  .card-status {
+    font-family: 'DM Mono', monospace; font-size: 0.62rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;
+  }
+  .status-dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
+  .active .status-dot { background: var(--sage); }
+  .review .status-dot { background: var(--gold); }
+  .planned .status-dot { background: var(--light-line); border: 1px solid var(--muted); }
+  .active .card-status { color: var(--sage); }
+  .review .card-status { color: var(--gold); }
+  .planned .card-status { color: var(--muted); }
+  .research-card h3 {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.25rem;
+    font-weight: 400; margin-bottom: 0.8rem; line-height: 1.3;
+  }
+  .research-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+  .card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.2rem; }
+  .tag {
+    font-size: 0.65rem; font-family: 'DM Mono', monospace;
+    padding: 0.2rem 0.6rem; background: var(--cream);
+    color: var(--muted); letter-spacing: 0.05em;
+  }
+
+  /* ── TEACHING ── */
+  .teaching-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; }
+  .course-list { display: flex; flex-direction: column; gap: 0; }
+  .course-item {
+    display: grid; grid-template-columns: 5rem 1fr; gap: 1rem;
+    padding: 1rem 0; border-bottom: 1px solid var(--light-line);
+  }
+  .course-year {
+    font-family: 'DM Mono', monospace; font-size: 0.68rem;
+    color: var(--muted); padding-top: 0.2rem;
+  }
+  .course-name { font-size: 0.9rem; color: var(--ink); line-height: 1.4; }
+  .course-inst { font-size: 0.78rem; color: var(--muted); margin-top: 0.2rem; }
+
+  .teaching-side { display: flex; flex-direction: column; gap: 2rem; }
+  .teaching-highlight {
+    padding: 2rem; border-left: 3px solid var(--rust);
+    background: rgba(181,84,28,0.04);
+  }
+  .teaching-highlight h4 {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  .teaching-highlight p { font-size: 0.88rem; color: var(--muted); }
+
+  /* ── PUBLICATIONS ── */
+  .pub-list { display: flex; flex-direction: column; gap: 1.5rem; max-width: 72ch; }
+  .pub-item {
+    padding: 1.5rem 0; border-bottom: 1px solid var(--light-line);
+  }
+  .pub-type {
+    font-family: 'DM Mono', monospace; font-size: 0.62rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--sage); margin-bottom: 0.5rem;
+  }
+  .pub-title { font-size: 1rem; color: var(--ink); line-height: 1.45; margin-bottom: 0.4rem; }
+  .pub-meta { font-size: 0.82rem; color: var(--muted); font-style: italic; }
+  .pub-badge {
+    display: inline-block; margin-top: 0.5rem;
+    padding: 0.18rem 0.7rem; font-size: 0.62rem;
+    font-family: 'DM Mono', monospace; letter-spacing: 0.08em;
+    border: 1px solid var(--gold); color: var(--gold);
+  }
+
+  /* ── PROJECTS (applied) ── */
+  .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .project-card {
+    padding: 2rem; border: 1px solid var(--light-line);
+    position: relative; overflow: hidden;
+    transition: transform 0.2s;
+  }
+  .project-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .project-card.ai::after { background: var(--sage); }
+  .project-card.foresight::after { background: var(--gold); }
+  .project-card.coaching::after { background: var(--rust); }
+  .project-card.research::after { background: var(--ink); }
+  .project-card:hover { transform: translateY(-2px); }
+  .project-type {
+    font-family: 'DM Mono', monospace; font-size: 0.62rem;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+    margin-bottom: 0.8rem;
+  }
+  .project-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 400; margin-bottom: 0.8rem; line-height: 1.3;
+  }
+  .project-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+  .project-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    margin-top: 1rem; font-family: 'DM Mono', monospace; font-size: 0.68rem;
+    letter-spacing: 0.08em; color: var(--rust); text-decoration: none;
+  }
+  .project-link:hover { text-decoration: underline; }
+
+  /* ── CONTACT ── */
+  .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .contact-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 300; line-height: 1.5;
+    color: var(--ink); margin-bottom: 1.5rem;
+  }
+  .contact-intro em { font-style: italic; color: var(--rust); }
+  .contact-text { font-size: 0.92rem; color: var(--muted); margin-bottom: 2rem; }
+  .contact-fields { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-field { display: flex; gap: 1rem; align-items: flex-start; }
+  .field-label {
+    font-family: 'DM Mono', monospace; font-size: 0.65rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); min-width: 5rem; padding-top: 0.1rem;
+  }
+  .field-value { font-size: 0.9rem; color: var(--ink); }
+  .field-value a { color: var(--rust); text-decoration: none; }
+  .field-value a:hover { text-decoration: underline; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2rem 4rem;
+    border-top: 1px solid var(--light-line);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'DM Mono', monospace; font-size: 0.65rem;
+    letter-spacing: 0.08em; color: var(--muted);
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-in {
+    opacity: 0; transform: translateY(20px);
+    animation: fadeUp 0.7s ease forwards;
+  }
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-in:nth-child(1) { animation-delay: 0.1s; }
+  .fade-in:nth-child(2) { animation-delay: 0.25s; }
+  .fade-in:nth-child(3) { animation-delay: 0.4s; }
+  .fade-in:nth-child(4) { animation-delay: 0.55s; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid, .teaching-layout, .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+    .research-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Dr. Anja Hagedorn</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research & Projects</a></li>
+    <li><a href="#teaching">Teaching</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-text">
+    <div class="hero-eyebrow fade-in">Researcher · Educator · Advisor</div>
+    <h1 class="fade-in">Dr. Anja<br><em>Hagedorn</em></h1>
+    <p class="hero-desc fade-in">Entrepreneurship, AI skills research, and experiential learning — connecting academic depth with applied foresight across Europe and beyond.</p>
+    <div class="hero-ctas fade-in">
+      <a href="#research" class="btn btn-primary">Current Research</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-stats fade-in">
+    <div>
+      <div class="stat-num">15+</div>
+      <div class="stat-label">Years Teaching</div>
+    </div>
+    <div>
+      <div class="stat-num">7</div>
+      <div class="stat-label">Countries</div>
+    </div>
+    <div>
+      <div class="stat-num">3</div>
+      <div class="stat-label">Teaching Languages</div>
+    </div>
+    <div>
+      <div class="stat-num">EN·DE</div>
+      <div class="stat-label">Teaching Languages</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header">
+    <span class="section-num">01 —</span>
+    <h2>About</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-body">
+      <p>I am a Leipzig-based researcher and educator working at the intersection of <strong>entrepreneurship, AI, and learning design</strong>. My work spans academic teaching, applied research, and coaching — always with an eye on how knowledge actually changes practice.</p>
+      <p>My teaching philosophy is grounded in <strong>TZI (Themenzentrierte Interaktion)</strong> facilitation principles: balancing individual, group, and subject matter in dynamic, inclusive environments. I have designed and delivered courses across Germany, Vietnam, Indonesia, and Poland — often simultaneously navigating significant cultural and institutional differences.</p>
+      <p>What excites me most right now is <strong>AI as an enabler for founders</strong> — how it can support the full startup journey from early planning and validation through MVP development to go-live, as a holistic companion rather than a point solution. This connects my research on coaching and venture creation directly with applied AI tooling.</p>
+      <div class="languages">
+        <div class="lang-label">Teaching Languages</div>
+        <div class="lang-items">
+          <span class="lang-tag">English</span>
+          <span class="lang-tag">German</span>
+        </div>
+      </div>
+      <div class="languages" style="margin-top:1.2rem">
+        <div class="lang-label">Teaching Fields</div>
+        <div class="lang-items">
+          <span class="lang-tag">Entrepreneurship</span>
+          <span class="lang-tag">Innovation Management</span>
+          <span class="lang-tag">Technology & Forsight</span>
+          <span class="lang-tag">Design Thinking</span>
+          <span class="lang-tag">Agile Management</span>
+          <span class="lang-tag">Online Marketing</span>
+          <span class="lang-tag">E-Commerce</span>
+          <span class="lang-tag">Project Management</span>
+          
+        </div>
+      </div>
+      <div style="margin-top:2rem; padding:1.5rem; border-left: 3px solid var(--rust); background: rgba(181,84,28,0.04);">
+        <div style="font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--rust); margin-bottom:0.6rem;">Practice Field</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; margin-bottom:0.5rem;">Start-up Coaching & Translation</div>
+        <p style="font-size:0.88rem; color:var(--muted); line-height:1.65;">I work with founders at the boundary between research and reality — supporting the translation of academic models and validated insights into actionable business decisions. This includes coaching through ideation, business model development, MVP scoping, and go-live preparation. The goal is not to apply frameworks for their own sake, but to help founders develop their own judgment.</p>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:1.2rem;">Qualifications</div>
+      <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-year">2025–26</div>
+        <div class="tl-text"><strong>MIT Applied AI & Data Science</strong>Professional Certificate · MIT Professional Education</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2023–24</div>
+        <div class="tl-text"><strong>Patent- & Innovationsschutz Manager</strong>Universität Koblenz / Universität des Saarlandes · Note 1,0</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2023</div>
+        <div class="tl-text"><strong>EXIN Agile Scrum Master & Product Owner</strong>Certification</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2017</div>
+        <div class="tl-text"><strong>Dr. rer. oec. — magna cum laude</strong>HHL Leipzig Graduate School of Management</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2013–16</div>
+        <div class="tl-text"><strong>TZI Grundausbildung</strong>RCI International</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2012–13</div>
+        <div class="tl-text"><strong>Systemische Beratung — Basis-Zertifikat</strong>isb GmbH</div>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+<section id="research">
+  <div class="section-header">
+    <span class="section-num">02 —</span>
+    <h2>Research & Projects</h2>
+  </div>
+  <div class="research-grid">
+    <div class="research-card review">
+      <div class="card-status review"><span class="status-dot"></span>Under Review · IJEV</div>
+      <h3>The SMART Model of Founder Coaching Functions</h3>
+      <p>A conceptual and empirical contribution to understanding how coaching supports venture creation. Co-authored with R. Klapper, under review at the International Journal of Entrepreneurial Venturing.</p>
+      <div class="card-tags">
+        <span class="tag">Coaching</span>
+        <span class="tag">Entrepreneurship</span>
+        <span class="tag">SMART Model</span>
+      </div>
+    </div>
+    <div class="research-card active">
+      <div class="card-status active"><span class="status-dot"></span>AI Tool · Live</div>
+      <h3>SMART Model Diagnostic Chatbot</h3>
+      <p>An AI-powered self-assessment tool for founders, built with React and the Anthropic API. Translates the SMART coaching model into a conversational diagnostic interface.</p>
+      <div class="card-tags">
+        <span class="tag">React</span>
+        <span class="tag">Anthropic API</span>
+        <span class="tag">Founder Coaching</span>
+      </div>
+      <a href="https://smart-model-ten.vercel.app" target="_blank" class="project-link">smart-model-ten.vercel.app →</a>
+    </div>
+    <div class="research-card active">
+      <div class="card-status active"><span class="status-dot"></span>Active · 2025</div>
+      <h3>AI Skills Demand Study</h3>
+      <p>Mapping AI-related job requirements across Germany, Switzerland, and the US using Adzuna API data and BERTopic topic modeling — tracking how fast the demand landscape shifts.</p>
+      <div class="card-tags">
+        <span class="tag">NLP</span>
+        <span class="tag">BERTopic</span>
+        <span class="tag">DACH · US</span>
+      </div>
+    </div>
+    <div class="research-card active">
+      <div class="card-status active"><span class="status-dot"></span>Completed · 2024</div>
+      <h3>KI bis 2029 — Foresight Scenario Analysis</h3>
+      <p>Multi-expert, role-based scenario planning exercise projecting the trajectory of AI in German-speaking business contexts across five years.</p>
+      <div class="card-tags">
+        <span class="tag">Scenarios</span>
+        <span class="tag">DACH Region</span>
+        <span class="tag">AI Strategy</span>
+      </div>
+    </div>
+    <div class="research-card planned">
+      <div class="card-status planned"><span class="status-dot"></span>In Development · 2025/26</div>
+      <h3>Weak Signals Detector as an Innovation Method</h3>
+      <p>Developing a practical framework for identifying and interpreting early-stage signals of change — bridging foresight methodology with hands-on innovation practice for organizations and startups.</p>
+      <div class="card-tags">
+        <span class="tag">Foresight</span>
+        <span class="tag">Innovation</span>
+        <span class="tag">Weak Signals</span>
+      </div>
+    </div>
+    <div class="research-card planned">
+      <div class="card-status planned"><span class="status-dot"></span>Planned</div>
+      <h3>Crowdinvesting Revisited</h3>
+      <p>A longitudinal reflection on equity crowdfunding in Germany — revisiting earlier empirical findings in light of regulatory changes, platform consolidation, and new investor behaviour.</p>
+      <div class="card-tags">
+        <span class="tag">Crowdfunding</span>
+        <span class="tag">Finance</span>
+        <span class="tag">Longitudinal</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEACHING -->
+<section id="teaching">
+  <div class="section-header">
+    <span class="section-num">03 —</span>
+    <h2>Teaching</h2>
+  </div>
+  <div class="teaching-layout">
+    <div class="course-list">
+      <div class="course-item">
+        <div class="course-year">2025–</div>
+        <div><div class="course-name">Project Management (Trainer)</div><div class="course-inst">Stadt Leipzig · German</div></div>
+      </div>
+      <div class="course-item">
+        <div class="course-year">2023</div>
+        <div><div class="course-name">Coursebook: Agile Management</div><div class="course-inst">IU International University</div></div>
+      </div>
+      <div class="course-item">
+        <div class="course-year">2022</div>
+        <div><div class="course-name">Design Thinking (19 lectures, 85h)</div><div class="course-inst">VNUK Vietnam · English</div></div>
+      </div>
+      <div class="course-item">
+        <div class="course-year">2022</div>
+        <div><div class="course-name">Entrepreneurship (extracurricular)</div><div class="course-inst">JULI Indonesia · English</div></div>
+      </div>
+      <div class="course-item">
+        <div class="course-year">2022</div>
+        <div><div class="course-name">E-Commerce (Bachelor)</div><div class="course-inst">FHDW · German</div></div>
+      </div>
+      <div class="course-item">
+        <div class="course-year">2022</div>
+        <div><div class="course-name">International Business Management</div><div class="course-inst">VNUK Vietnam · English</div></div>
+      </div>
+      <div class="course-item">
+        <div class="course-year">2020</div>
+        <div><div class="course-name">Finance & Accounting (Foundation)</div><div class="course-inst">Lancaster University Leipzig · English</div></div>
+      </div>
+      <div class="course-item">
+        <div class="course-year">2019–</div>
+        <div><div class="course-name">Online Marketing (Freelance)</div><div class="course-inst">AKAD University · German</div></div>
+      </div>
+      <div class="course-item">
+        <div class="course-year">2013–14</div>
+        <div><div class="course-name">Entrepreneurship for MBA (48 UE)</div><div class="course-inst">Handelsschule Wrocław · English</div></div>
+      </div>
+      <div class="course-item">
+        <div class="course-year">2011–12</div>
+        <div><div class="course-name">Entrepreneurship (Master tutorial)</div><div class="course-inst">HHL Leipzig · English</div></div>
+      </div>
+    </div>
+    <div class="teaching-side">
+      <div class="teaching-highlight">
+        <h4>Teaching Philosophy</h4>
+        <p>Experiential and inclusive learning environments grounded in TZI facilitation — balancing individual, group, and subject matter. I consider <strong>intercultural humility</strong> foundational to effective global education, shaped by teaching across Vietnam, Indonesia, Poland, and Germany. Increasingly complemented by AI-powered tools for active reflection and coaching.</p>
+      </div>
+      <div class="teaching-highlight">
+        <h4>Formal Didactic Training</h4>
+        <p>Hochschuldidaktik (GHD Baden-Württemberg), Vertiefung Interkulturelle Kommunikation, Liberating Structures Practitioner, TZI Grundausbildung (RCI International).</p>
+      </div>
+      <div class="teaching-highlight">
+        <h4>Selected Workshops</h4>
+        <p>Academic Writing (PTB Berlin), Repertory Grid Technique (Fraunhofer IMW), Aufstiegsförderliche Führung (FH Güstrow), Unternehmensgründung für Geflüchtete (Frauen in Arbeit e.V.), Crowdfunding & Business Development (SMILE Leipzig).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="section-header">
+    <span class="section-num">04 —</span>
+    <h2>Publications</h2>
+  </div>
+  <div class="pub-list">
+    <div class="pub-item">
+      <div class="pub-type">Under Review</div>
+      <div class="pub-title">The SMART Model of Founder Coaching Functions</div>
+      <div class="pub-meta">Hagedorn, A.; Klapper, R. — International Journal of Entrepreneurial Venturing (IJEV), 2025/2026</div>
+      <span class="pub-badge">Under Review</span>
+    </div>
+    <div class="pub-item">
+      <div class="pub-type">Dissertation</div>
+      <div class="pub-title">The Impact of Social Capital for Venture Creation. Essays on its Role in Management Support and Crowdinvesting.</div>
+      <div class="pub-meta">Hagedorn, A. (2017) — HHL Leipzig Graduate School of Management</div>
+      <span class="pub-badge">Magna Cum Laude</span>
+    </div>
+    <div class="pub-item">
+      <div class="pub-type">Book Chapter</div>
+      <div class="pub-title">Using Repertory Grid Technique to Explore the Relationship Between Business Founders and Support Agents</div>
+      <div class="pub-meta">Hagedorn, A. (2015). In: Neergaard & Leitch (Eds.), Handbook of Qualitative Research Techniques in Entrepreneurship. Edward Elgar, London.</div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-type">Book Chapter</div>
+      <div class="pub-title">The Financing Process of Equity-Based Crowdfunding: An Empirical Analysis</div>
+      <div class="pub-meta">Hagedorn, A.; Pinkwart, A. (2015). In: Brüntje & Gajda (Eds.), Crowdfunding in Europe. Springer International Publishing.</div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-type">Working Paper</div>
+      <div class="pub-title">Crowdinvesting as a Financing Instrument for Startups in Germany. A Critical Platform Analysis.</div>
+      <div class="pub-meta">Hagedorn, A.; Pinkwart, A. (2013) — HHL Working Paper 120.</div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-type">Working Paper</div>
+      <div class="pub-title">Clusterprozesse in der Bioökonomie</div>
+      <div class="pub-meta">Lichtenberg, A.; Hagedorn, A.; Rudolph, K. (2015) — HHL Working Paper 147.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <span class="section-num">05 —</span>
+    <h2>Contact</h2>
+  </div>
+  <div class="contact-layout">
+    <div>
+      <p class="contact-intro">Open to <em>research collaborations</em>, teaching engagements, and advisory work.</p>
+      <p class="contact-text">Whether you're looking for an experienced educator with international reach, a researcher with hands-on AI tooling experience, or a facilitator with deep roots in entrepreneurship — I'd be glad to connect.</p>
+      <a href="mailto:anja.hagedorn@example.com" class="btn btn-primary">Send a Message</a>
+    </div>
+    <div class="contact-fields">
+      <div class="contact-field">
+        <div class="field-label">Location</div>
+        <div class="field-value">Leipzig, Germany</div>
+      </div>
+      <div class="contact-field">
+        <div class="field-label">Research</div>
+        <div class="field-value">Entrepreneurship · AI for Startups · Foresight</div>
+      </div>
+      <div class="contact-field">
+        <div class="field-label">Teaching</div>
+        <div class="field-value">EN · DE · Intercultural</div>
+      </div>
+      <div class="contact-field">
+        <div class="field-label">Project</div>
+        <div class="field-value"><a href="https://smart-model-ten.vercel.app" target="_blank">SMART Model Chatbot ↗</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Dr. Anja Hagedorn</span>
+  <span>Leipzig · Gen
