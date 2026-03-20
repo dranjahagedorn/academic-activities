@@ -246,15 +246,6 @@
   .field-value a { color: var(--rust); text-decoration: none; }
   .field-value a:hover { text-decoration: underline; }
 
-  /* ── IMPRESSUM ── */
-  #impressum { padding: 4rem; background: var(--ink); color: var(--muted); }
-  #impressum h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; color: var(--paper); margin-bottom: 1.5rem; }
-  .impressum-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-  .impressum-block { font-size: 0.85rem; line-height: 1.8; }
-  .impressum-label { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rust); margin-bottom: 0.5rem; }
-  .impressum-block a { color: var(--muted); text-decoration: none; }
-  .impressum-block a:hover { color: var(--paper); }
-
   /* ── FOOTER ── */
   footer {
     padding: 1.5rem 4rem;
@@ -281,8 +272,6 @@
     section { padding: 4rem 1.5rem; }
     .about-grid, .teaching-layout, .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; }
     .research-grid { grid-template-columns: 1fr; }
-    .impressum-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-    #impressum { padding: 3rem 1.5rem; }
     footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
   }
 </style>
@@ -635,25 +624,6 @@
 </section>
 
 <!-- IMPRESSUM -->
-<section id="impressum">
-  <h2>Impressum</h2>
-  <div class="impressum-grid">
-    <div class="impressum-block">
-      <div class="impressum-label">Angaben gemäß § 5 TMG</div>
-      Dr. Anja Hagedorn<br>
-      Bautzmannstr. 19<br>
-      04315 Leipzig<br>
-      Deutschland
-    </div>
-    <div class="impressum-block">
-      <div class="impressum-label">Kontakt</div>
-      E-Mail: anja_hagedorn at outlook punkt com<br><br>
-      <div class="impressum-label" style="margin-top:1rem;">Haftungshinweis</div>
-      Diese Website dient ausschließlich der persönlichen akademischen Darstellung. Trotz sorgfältiger inhaltlicher Kontrolle übernehme ich keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.
-    </div>
-  </div>
-</section>
-
 <!-- FOOTER -->
 <footer>
   <span>© 2026 Dr. Anja Hagedorn</span>
@@ -677,15 +647,7 @@
       form.reset();
       document.getElementById('form-status').style.display = 'block';
     }
-  });
-
-  // Email obfuscation (Impressum + Datenschutz only)
-  const u = 'anja_hagedorn';
-  const d = 'outlook.com';
-  const email = u + '@' + d;
-  const link = '<a href="mailto:' + email + '" style="color:var(--muted);text-decoration:none;">' + email + '</a>';
-  document.getElementById('impressum-email').innerHTML = link;
-  document.getElementById('datenschutz-email').innerHTML = link;
+  });  document.getElementById('datenschutz-email').innerHTML = link;
 
   // Active nav link on scroll
   const sections = document.querySelectorAll('section[id]');
