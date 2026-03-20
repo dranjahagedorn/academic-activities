@@ -347,7 +347,7 @@
   <div class="about-grid">
     <div class="about-body">
       <p>I am a Leipzig-based researcher and educator working at the intersection of <strong>entrepreneurship, AI, and learning design</strong>. My work spans academic teaching, applied research, and coaching — always with an eye on how knowledge actually changes practice.</p>
-      <p>My teaching philosophy is grounded in <strong>TCI (Theme-Centered Interaction)</strong> facilitation principles: balancing individual, group, and subject matter in dynamic, inclusive environments. I have designed and delivered courses across Germany, Vietnam, Indonesia, and Poland — often simultaneously navigating significant cultural and institutional differences.</p>
+      <p>My teaching philosophy is grounded in <strong>TZI (Themenzentrierte Interaktion)</strong> facilitation principles: balancing individual, group, and subject matter in dynamic, inclusive environments. I have designed and delivered courses across Germany, Vietnam, Indonesia, and Poland — often simultaneously navigating significant cultural and institutional differences.</p>
       <p>What excites me most right now is <strong>AI as an enabler for founders</strong> — how it can support the full startup journey from early planning and validation through MVP development to go-live, as a holistic companion rather than a point solution. This connects my research on coaching and venture creation directly with applied AI tooling.</p>
       <div class="languages">
         <div class="lang-label">Teaching Languages</div>
@@ -384,7 +384,7 @@
         </div>
         <div class="tl-item">
           <div class="tl-year">2023–24</div>
-          <div class="tl-text"><strong>Patent- & Innovationsschutz Manager</strong>University of Koblenz / University of Saarland </div>
+          <div class="tl-text"><strong>Patent- & Innovationsschutz Manager</strong>Universität Koblenz / Universität des Saarlandes · Note 1,0</div>
         </div>
         <div class="tl-item">
           <div class="tl-year">2023</div>
@@ -396,11 +396,11 @@
         </div>
         <div class="tl-item">
           <div class="tl-year">2013–16</div>
-          <div class="tl-text"><strong>TCI Grundausbildung</strong>RCI International</div>
+          <div class="tl-text"><strong>TZI Grundausbildung</strong>RCI International</div>
         </div>
         <div class="tl-item">
           <div class="tl-year">2012–13</div>
-          <div class="tl-text"><strong>Systemisc Counselling — Basis-Zertifikat</strong>isb GmbH</div>
+          <div class="tl-text"><strong>Systemische Beratung — Basis-Zertifikat</strong>isb GmbH</div>
         </div>
       </div>
     </div>
@@ -433,6 +433,7 @@
         <span class="tag">Anthropic API</span>
         <span class="tag">Founder Coaching</span>
       </div>
+      <a href="https://smart-model-ten.vercel.app" target="_blank" class="project-link">smart-model-ten.vercel.app →</a>
     </div>
     <div class="research-card active">
       <div class="card-status active"><span class="status-dot"></span>Active · 2025</div>
@@ -595,16 +596,27 @@
     <div>
       <p class="contact-intro">Open to <em>research collaborations</em>, teaching engagements, and advisory work.</p>
       <p class="contact-text">Whether you're looking for an experienced educator with international reach, a researcher with hands-on AI tooling experience, or a facilitator with deep roots in entrepreneurship — I'd be glad to connect.</p>
-      <a href="#" class="btn btn-primary" id="contact-btn">Send a Message</a>
+      <form id="contact-form" action="https://formspree.io/f/myknvpjp" method="POST" style="display:flex; flex-direction:column; gap:1rem; margin-top:0.5rem;">
+        <div style="display:flex; flex-direction:column; gap:0.4rem;">
+          <label style="font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted);">Name</label>
+          <input type="text" name="name" required style="padding:0.7rem 1rem; border:1px solid var(--light-line); background:var(--paper); font-family:'DM Sans',sans-serif; font-size:0.9rem; color:var(--ink); outline:none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--rust)'" onblur="this.style.borderColor='var(--light-line)'">
+        </div>
+        <div style="display:flex; flex-direction:column; gap:0.4rem;">
+          <label style="font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted);">E-Mail</label>
+          <input type="email" name="email" required style="padding:0.7rem 1rem; border:1px solid var(--light-line); background:var(--paper); font-family:'DM Sans',sans-serif; font-size:0.9rem; color:var(--ink); outline:none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--rust)'" onblur="this.style.borderColor='var(--light-line)'">
+        </div>
+        <div style="display:flex; flex-direction:column; gap:0.4rem;">
+          <label style="font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted);">Nachricht</label>
+          <textarea name="message" rows="4" required style="padding:0.7rem 1rem; border:1px solid var(--light-line); background:var(--paper); font-family:'DM Sans',sans-serif; font-size:0.9rem; color:var(--ink); outline:none; resize:vertical; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--rust)'" onblur="this.style.borderColor='var(--light-line)'"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Send a Message</button>
+        <p id="form-status" style="font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--sage); display:none;">Nachricht gesendet — vielen Dank!</p>
+      </form>
     </div>
     <div class="contact-fields">
       <div class="contact-field">
         <div class="field-label">Location</div>
         <div class="field-value">Leipzig, Germany</div>
-      </div>
-      <div class="contact-field">
-        <div class="field-label">Email</div>
-        <div class="field-value"><span id="email-display"></span></div>
       </div>
       <div class="contact-field">
         <div class="field-label">Research</div>
@@ -642,21 +654,59 @@
   </div>
 </section>
 
+<!-- DATENSCHUTZ -->
+<section id="datenschutz" style="background: #111110;">
+  <h2 style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:300; color:var(--paper); margin-bottom:1.5rem;">Datenschutzerklärung</h2>
+  <div class="impressum-grid">
+    <div class="impressum-block">
+      <div class="impressum-label">Verantwortliche Person</div>
+      Dr. Anja Hagedorn<br>
+      Bautzmannstr. 19, 04315 Leipzig<br>
+      E-Mail: <span id="datenschutz-email"></span><br><br>
+      <div class="impressum-label">Allgemeines</div>
+      Diese Website erhebt keine personenbezogenen Daten, setzt keine Cookies und verwendet keine Tracking- oder Analyse-Werkzeuge. Es werden keine Nutzerdaten gespeichert oder an Dritte weitergegeben.
+    </div>
+    <div class="impressum-block">
+      <div class="impressum-label">Google Fonts</div>
+      Diese Website verwendet Google Fonts zur Darstellung von Schriftarten. Beim Laden der Seite wird eine Verbindung zu Servern von Google LLC (1600 Amphitheatre Parkway, Mountain View, CA 94043, USA) hergestellt. Dabei kann Ihre IP-Adresse übertragen werden. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer einheitlichen Darstellung). Weitere Informationen finden Sie in der <a href="https://policies.google.com/privacy" target="_blank">Datenschutzerklärung von Google</a>.<br><br>
+      <div class="impressum-label">Ihre Rechte</div>
+      Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer Daten sowie ein Beschwerderecht bei der zuständigen Aufsichtsbehörde (Sächsischer Datenschutzbeauftragter).
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <span>© 2026 Dr. Anja Hagedorn · Leipzig</span>
-  <span><a href="#impressum" style="color:inherit; text-decoration:none;">Impressum</a></span>
+  <span>
+    <a href="#impressum" style="color:inherit; text-decoration:none;">Impressum</a>
+    &nbsp;·&nbsp;
+    <a href="#datenschutz" style="color:inherit; text-decoration:none;">Datenschutz</a>
+  </span>
 </footer>
 
 <script>
-  // Email obfuscation
+  // Contact form via Formspree
+  const form = document.getElementById('contact-form');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const response = await fetch(form.action, {
+      method: 'POST', body: data, headers: { 'Accept': 'application/json' }
+    });
+    if (response.ok) {
+      form.reset();
+      document.getElementById('form-status').style.display = 'block';
+    }
+  });
+
+  // Email obfuscation (Impressum + Datenschutz only)
   const u = 'anja_hagedorn';
   const d = 'outlook.com';
   const email = u + '@' + d;
-  const link = '<a href="mailto:' + email + '" style="color:var(--rust);text-decoration:none;">' + email + '</a>';
-  document.getElementById('email-display').innerHTML = link;
+  const link = '<a href="mailto:' + email + '" style="color:var(--muted);text-decoration:none;">' + email + '</a>';
   document.getElementById('impressum-email').innerHTML = link;
-  document.getElementById('contact-btn').href = 'mailto:' + email;
+  document.getElementById('datenschutz-email').innerHTML = link;
 
   // Active nav link on scroll
   const sections = document.querySelectorAll('section[id]');
